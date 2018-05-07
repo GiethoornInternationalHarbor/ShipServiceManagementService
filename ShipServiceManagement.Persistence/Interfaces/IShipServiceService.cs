@@ -1,0 +1,37 @@
+﻿using ShipServiceManagement.Models;
+using System.Threading.Tasks;
+
+namespace ShipServiceManagement.Persistence.Interfaces
+{
+	public interface IShipServiceService
+	{
+		/// <summary>
+		/// Gets the asynchronous.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <returns></returns>
+		Task<ShipService> GetAsync(string name);
+
+		/// <summary>
+		/// Adds the asynchronous.
+		/// </summary>
+		/// <param name="shipService">The ship service.</param>
+		/// <returns></returns>
+		Task AddAsync(ShipService shipService);
+
+		/// <summary>
+		/// Updates the asynchronous.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="price">The price.</param>
+		/// <returns></returns>
+		Task UpdateAsync(ShipService shipService);
+
+		/// <summary>
+		/// Deletes the asynchronous.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <returns></returns>
+		Task DeleteAsync(string name);
+	}
+}
