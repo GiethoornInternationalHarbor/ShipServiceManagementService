@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShipServiceManagement.Logic.Extensions;
+using ShipServiceManagement.Messaging.Extensions;
 using ShipServiceManagement.Persistence.Extensions;
 using System;	
 
@@ -31,6 +32,7 @@ namespace ShipServiceManagement.App
 				.Build();
 
 			services.AddLogic();
+			services.AddMessaging();
 			services.AddPersistence(cfg);
 		}
     }

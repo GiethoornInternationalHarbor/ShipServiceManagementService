@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShipServiceManagement.BL\ShipServiceManagement.Logic.csproj" />
+    <ProjectReference Include="..\ShipServiceManagement.Messaging\ShipServiceManagement.Messaging.csproj" />
     <ProjectReference Include="..\ShipServiceManagement.Persistence\ShipServiceManagement.Persistence.csproj" />
   </ItemGroup>
 
