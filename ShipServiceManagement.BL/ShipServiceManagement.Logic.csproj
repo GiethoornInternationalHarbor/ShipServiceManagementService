@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Implementations\" />
+    <ProjectReference Include="..\ShipServiceManagement.Messaging\ShipServiceManagement.Messaging.csproj" />
+    <ProjectReference Include="..\ShipServiceManagement.Models\ShipServiceManagement.Models.csproj" />
+    <ProjectReference Include="..\ShipServiceManagement.Persistence\ShipServiceManagement.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
