@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShipServiceManagement.Logic.Interfaces;
 using ShipServiceManagement.Models;
+using System.Threading.Tasks;
 
 namespace ShipServiceManagement.App.Controllers
 {
@@ -24,7 +25,7 @@ namespace ShipServiceManagement.App.Controllers
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
 		[HttpPost]
-		public IActionResult Post([FromBody]ShipService shipService)
+		public async Task<IActionResult> Post([FromBody]ShipService shipService)
 		{
 			IActionResult response = null;
 
@@ -34,7 +35,7 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				_shipServiceManager.CreateShipService(shipService);
+				await _shipServiceManager.CreateShipService(shipService);
 				response = Ok();
 			}
 
@@ -47,7 +48,7 @@ namespace ShipServiceManagement.App.Controllers
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
 		[HttpPut]
-		public IActionResult Put([FromBody]ShipService shipService)
+		public async Task<IActionResult> Put([FromBody]ShipService shipService)
 		{
 			IActionResult response = null;
 
@@ -57,7 +58,7 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				_shipServiceManager.UpdateShipService(shipService);
+				await _shipServiceManager.UpdateShipService(shipService);
 				response = Ok();
 			}
 
@@ -70,7 +71,7 @@ namespace ShipServiceManagement.App.Controllers
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
 		[HttpDelete]
-		public IActionResult Delete([FromBody]string name)
+		public async Task<IActionResult> Delete([FromBody]string name)
 		{
 			IActionResult response = null;
 
@@ -80,7 +81,7 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				_shipServiceManager.DeleteShipService(name);
+				await _shipServiceManager.DeleteShipService(name);
 				response = Ok();
 			}
 
