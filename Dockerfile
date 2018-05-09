@@ -9,6 +9,8 @@ COPY ShipServiceManagement.Messaging/*.csproj ./ShipServiceManagement.Messaging/
 COPY ShipServiceManagement.Models/*.csproj ./ShipServiceManagement.Models/
 COPY ShipServiceManagement.Persistence/*.csproj ./ShipServiceManagement.Persistence/
 
+EXPOSE 5000
+
 # Restore the packages
 RUN dotnet restore
 

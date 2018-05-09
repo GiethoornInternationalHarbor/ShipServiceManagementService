@@ -10,34 +10,34 @@ using dotenv.net;
 namespace ShipServiceManagement.App
 {
 	public class Startup
-    {	  
-        public Startup()
-        {
+	{
+		public Startup()
+		{
 			string filePath = ".env";
 
 			DotEnv.Config(throwOnError: false, filePath: filePath);
-        }	 
+		}
 
-        public void ConfigureServices(IServiceCollection services)
-        {
+		public void ConfigureServices(IServiceCollection services)
+		{
 			IConfiguration cfg = new ConfigurationBuilder()
 				.AddEnvironmentVariables()
 				.Build();
 
 			services.AddLogic();
 			services.AddMessaging();
-			services.AddPersistence(cfg);	
-            services.AddMvc();
-        }
+			services.AddPersistence(cfg);
+			services.AddMvc();
+		}
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
 
-            app.UseMvc();
-        }
-    }
+			app.UseMvc();
+		}
+	}
 }
