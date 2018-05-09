@@ -9,8 +9,6 @@ COPY ShipServiceManagement.Messaging/*.csproj ./ShipServiceManagement.Messaging/
 COPY ShipServiceManagement.Models/*.csproj ./ShipServiceManagement.Models/
 COPY ShipServiceManagement.Persistence/*.csproj ./ShipServiceManagement.Persistence/
 
-EXPOSE 5000
-
 # Restore the packages
 RUN dotnet restore
 
@@ -28,5 +26,7 @@ WORKDIR /app
 
 # Copy the output from the build env
 COPY --from=publish /app/ShipServiceManagement.App/out ./
+
+EXPOSE 5000
 
 ENTRYPOINT [ "dotnet", "ShipServiceManagement.App.dll" ]
