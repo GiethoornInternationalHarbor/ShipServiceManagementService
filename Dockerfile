@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk AS build
+FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /app
 
 # Copy the project file
@@ -21,7 +21,7 @@ FROM build AS publish
 RUN dotnet publish -c Release -o out
 
 # Build the runtime image
-FROM microsoft/dotnet:2.0-runtime AS runtime
+FROM microsoft/aspnetcore:2.0 AS runtime
 WORKDIR /app
 
 # Copy the output from the build env
