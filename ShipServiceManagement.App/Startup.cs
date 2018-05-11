@@ -6,6 +6,8 @@ using ShipServiceManagement.Logic.Extensions;
 using ShipServiceManagement.Messaging.Extensions;
 using ShipServiceManagement.Persistence.Extensions;
 using dotenv.net;
+using System.IO;
+using System;
 
 namespace ShipServiceManagement.App
 {
@@ -14,6 +16,10 @@ namespace ShipServiceManagement.App
 		public Startup()
 		{
 			string filePath = ".env";
+
+#if DEBUG
+			filePath = Path.Combine(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.LastIndexOf("bin")), filePath);
+#endif
 
 			DotEnv.Config(throwOnError: false, filePath: filePath);
 		}
@@ -25,7 +31,7 @@ namespace ShipServiceManagement.App
 				.Build();
 
 			services.AddLogic();
-			services.AddMessaging();
+			services.AddMessaging(cfg);
 			services.AddPersistence(cfg);
 			services.AddMvc();
 		}
