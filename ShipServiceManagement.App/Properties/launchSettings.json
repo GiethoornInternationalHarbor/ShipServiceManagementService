@@ -21,8 +21,8 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
-        "DB_CONNECTION_STRING": "Value",
-        "AMQP_URL": "Value",
+        "DB_CONNECTION_STRING": "Server=.\\SQL_2017;Database=ShipServiceManagement;Trusted_Connection=True;MultipleActiveResultSets=true",
+        "AMQP_URL": "amqp://guest:guest@localhost:5672",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:60042/"

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace ShipServiceManagement.Messaging.Interfaces
 {
 	public interface IMessagePublisher
-    {
+	{
 		/// <summary>
 		/// Publishes the message asynchronous.
 		/// </summary>
@@ -13,5 +13,5 @@ namespace ShipServiceManagement.Messaging.Interfaces
 		/// <param name="message">The message.</param>
 		/// <returns></returns>
 		Task PublishMessageAsync<T>(MessageTypes messageType, T message);
-    }
+	}
 }

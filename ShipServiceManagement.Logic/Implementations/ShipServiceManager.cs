@@ -18,10 +18,11 @@ namespace ShipServiceManagement.Logic.Implementations
 			_messagePublisher = messagePublisher;
 		}
 
-		public async Task CreateShipService(ShipService shipService)
+		public async Task<ShipService> CreateShipService(ShipService shipService)
 		{
-			await _shipServiceService.AddAsync(shipService);
+			var addedShipService = await _shipServiceService.AddAsync(shipService);
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceCreated, shipService);
+			return addedShipService;
 		}
 
 		public async Task DeleteShipService(string name)
@@ -30,10 +31,11 @@ namespace ShipServiceManagement.Logic.Implementations
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, name);
 		}
 
-		public async Task UpdateShipService(ShipService shipService)
+		public async Task<ShipService> UpdateShipService(ShipService shipService)
 		{
-			await _shipServiceService.UpdateAsync(shipService);
+			var updatedShipService = await _shipServiceService.UpdateAsync(shipService);
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceUpdated, shipService);
+			return updatedShipService;
 		}
 	}
 }

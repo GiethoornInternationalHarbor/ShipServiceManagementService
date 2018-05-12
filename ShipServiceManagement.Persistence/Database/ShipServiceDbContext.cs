@@ -9,6 +9,6 @@ namespace ShipServiceManagement.Persistence.Database
 			: base(options)
 		{ }
 
-		public DbSet<ShipService> ShipService { get; set; }	  
+		public DbSet<ShipService> ShipService { get; set; }
 	}
 }

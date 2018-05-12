@@ -8,13 +8,16 @@ using ShipServiceManagement.Persistence.Extensions;
 using dotenv.net;
 using System.IO;
 using System;
+using Utf8Json.Resolvers;
 
 namespace ShipServiceManagement.App
 {
 	public class Startup
 	{
-		public Startup()
+		public Startup(IConfiguration configuration)
 		{
+			Configuration = configuration;
+
 			string filePath = ".env";
 
 #if DEBUG
@@ -24,15 +27,13 @@ namespace ShipServiceManagement.App
 			DotEnv.Config(throwOnError: false, filePath: filePath);
 		}
 
+		public IConfiguration Configuration { get; }
+
 		public void ConfigureServices(IServiceCollection services)
 		{
-			IConfiguration cfg = new ConfigurationBuilder()
-				.AddEnvironmentVariables()
-				.Build();
-
 			services.AddLogic();
-			services.AddMessaging(cfg);
-			services.AddPersistence(cfg);
+			services.AddMessaging(Configuration);
+			services.AddPersistence(Configuration);
 			services.AddMvc();
 		}
 
@@ -43,6 +44,13 @@ namespace ShipServiceManagement.App
 				app.UseDeveloperExceptionPage();
 			}
 
+			CompositeResolver.RegisterAndSetAsDefault(new[]
+			{
+			   EnumResolver.UnderlyingValue,
+			   StandardResolver.ExcludeNullCamelCase
+			});
+
+			Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
 			app.UseMvc();
 		}
 	}

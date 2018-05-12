@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using ShipServiceManagement.Persistence.Database;
 using System;
@@ -10,7 +11,7 @@ using System;
 namespace ShipServiceManagement.Persistence.Migrations
 {
     [DbContext(typeof(ShipServiceDbContext))]
-    [Migration("20180507091229_Initial")]
+    [Migration("20180512125541_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,12 +23,13 @@ namespace ShipServiceManagement.Persistence.Migrations
 
             modelBuilder.Entity("ShipServiceManagement.Models.ShipService", b =>
                 {
-                    b.Property<string>("Name")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id");
+
+                    b.Property<string>("Name");
 
                     b.Property<double>("Price");
 
-                    b.HasKey("Name");
+                    b.HasKey("Id");
 
                     b.ToTable("ShipService");
                 });

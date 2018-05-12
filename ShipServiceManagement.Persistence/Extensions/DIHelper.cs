@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ShipServiceManagement.Persistence.Database;
 using ShipServiceManagement.Persistence.Implementations;
 using ShipServiceManagement.Persistence.Interfaces;
+using System;
 
 namespace ShipServiceManagement.Persistence.Extensions
 {
@@ -16,6 +17,18 @@ namespace ShipServiceManagement.Persistence.Extensions
 			services.AddTransient<IShipServiceService, ShipServiceService>();
 
 			return services;
+		}
+
+		public static void OnServicesSetup(IServiceProvider serviceProvider)
+		{
+
+			using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+			{
+				Console.WriteLine("Connecting to database and migrating if required");
+				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
+				dbContext.Database.Migrate();
+				Console.WriteLine("Completed connecting to database");
+			}
 		}
 	}
 }

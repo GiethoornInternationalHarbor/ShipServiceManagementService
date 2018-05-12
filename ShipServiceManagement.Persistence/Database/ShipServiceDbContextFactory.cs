@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Design;
 namespace ShipServiceManagement.Persistence.Database
 {
 	public class ShipServiceDbContextFactory : IDesignTimeDbContextFactory<ShipServiceDbContext>
-    {
+	{
 		public ShipServiceDbContext CreateDbContext(string[] args)
 		{
 			var optBuilder = new DbContextOptionsBuilder<ShipServiceDbContext>();
-			optBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ShipService;Trusted_Connection=True;MultipleActiveResultSets=true");
+			optBuilder.UseSqlServer("Server=.\\SQL_2017;Database=ShipServiceManagement;Trusted_Connection=True;MultipleActiveResultSets=true");
 
 			return new ShipServiceDbContext(optBuilder.Options);
 		}
-    }
+	}
 }
 #endif

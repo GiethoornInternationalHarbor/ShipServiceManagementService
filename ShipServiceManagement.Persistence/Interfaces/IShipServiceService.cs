@@ -17,7 +17,7 @@ namespace ShipServiceManagement.Persistence.Interfaces
 		/// </summary>
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
-		Task AddAsync(ShipService shipService);
+		Task<ShipService> AddAsync(ShipService shipService);
 
 		/// <summary>
 		/// Updates the asynchronous.
@@ -25,7 +25,7 @@ namespace ShipServiceManagement.Persistence.Interfaces
 		/// <param name="name">The name.</param>
 		/// <param name="price">The price.</param>
 		/// <returns></returns>
-		Task UpdateAsync(ShipService shipService);
+		Task<ShipService> UpdateAsync(ShipService shipService);
 
 		/// <summary>
 		/// Deletes the asynchronous.

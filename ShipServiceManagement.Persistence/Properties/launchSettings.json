@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ShipServiceManagement.Persistence": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DB_CONNECTION_STRING": "Server=./SQL_2017;Database=ShipServiceManagement;Trusted_Connection=True;MultipleActiveResultSets=true"
+      }
+    }
+  }
+}

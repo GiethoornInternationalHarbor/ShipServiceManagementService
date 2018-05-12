@@ -15,10 +15,12 @@ namespace ShipServiceManagement.Persistence.Implementations
 			_shipServiceContext = shipServiceContext;
 		}
 
-		public async Task AddAsync(ShipService shipService)
+		public async Task<ShipService> AddAsync(ShipService shipService)
 		{
 			var shipServiceToAdd = (await _shipServiceContext.ShipService.AddAsync(shipService)).Entity;
 			await _shipServiceContext.SaveChangesAsync();
+
+			return shipServiceToAdd;
 		}
 
 		public async Task DeleteAsync(string name)
@@ -31,12 +33,14 @@ namespace ShipServiceManagement.Persistence.Implementations
 		public Task<ShipService> GetAsync(string name)
 		{
 			return _shipServiceContext.ShipService.LastOrDefaultAsync(x => x.Name == name);
-		}	
+		}
 
-		public async Task UpdateAsync(ShipService shipService)
+		public async Task<ShipService> UpdateAsync(ShipService shipService)
 		{
-			_shipServiceContext.ShipService.Update(shipService);
+			var updatedShipService = _shipServiceContext.ShipService.Update(shipService);
 			await _shipServiceContext.SaveChangesAsync();
+
+			return updatedShipService.Entity;
 		}
 	}
 }

@@ -35,8 +35,8 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				await _shipServiceManager.CreateShipService(shipService);
-				response = Ok();
+				var createdShipService = await _shipServiceManager.CreateShipService(shipService);
+				response = Ok(createdShipService);
 			}
 
 			return response;
@@ -58,8 +58,8 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				await _shipServiceManager.UpdateShipService(shipService);
-				response = Ok();
+				var updatedShipService = await _shipServiceManager.UpdateShipService(shipService);
+				response = Ok(updatedShipService);
 			}
 
 			return response;

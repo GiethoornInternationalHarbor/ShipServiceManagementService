@@ -12,12 +12,13 @@ namespace ShipServiceManagement.Persistence.Migrations
                 name: "ShipService",
                 columns: table => new
                 {
-                    Name = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShipService", x => x.Name);
+                    table.PrimaryKey("PK_ShipService", x => x.Id);
                 });
         }
 
