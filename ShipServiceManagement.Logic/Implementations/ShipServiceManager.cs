@@ -4,6 +4,7 @@ using ShipServiceManagement.Messaging.Interfaces;
 using ShipServiceManagement.Models;
 using ShipServiceManagement.Persistence.Interfaces;
 using ShipServiceManagement.Messaging.Extensions;
+using System;
 
 namespace ShipServiceManagement.Logic.Implementations
 {
@@ -25,10 +26,10 @@ namespace ShipServiceManagement.Logic.Implementations
 			return addedShipService;
 		}
 
-		public async Task DeleteShipService(string name)
+		public async Task DeleteShipService(Guid id)
 		{
-			await _shipServiceService.DeleteAsync(name);
-			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, name);
+			await _shipServiceService.DeleteAsync(id);
+			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, id);
 		}
 
 		public async Task<ShipService> UpdateShipService(ShipService shipService)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShipServiceManagement.Logic.Interfaces;
 using ShipServiceManagement.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.App.Controllers
@@ -29,7 +30,7 @@ namespace ShipServiceManagement.App.Controllers
 		{
 			IActionResult response = null;
 
-			if (shipService == null)
+			if (shipService == null || shipService.Id == null || shipService.Id == Guid.Empty)
 			{
 				response = NotFound();
 			}
@@ -70,18 +71,18 @@ namespace ShipServiceManagement.App.Controllers
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		[HttpDelete]
-		public async Task<IActionResult> Delete([FromBody]string name)
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> Delete(Guid id)
 		{
 			IActionResult response = null;
 
-			if (string.IsNullOrEmpty(name))
+			if (id == null || id != Guid.Empty)
 			{
 				response = NotFound();
 			}
 			else
 			{
-				await _shipServiceManager.DeleteShipService(name);
+				await _shipServiceManager.DeleteShipService(id);
 				response = Ok();
 			}
 

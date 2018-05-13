@@ -1,4 +1,5 @@
 ﻿using ShipServiceManagement.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Interfaces
@@ -10,7 +11,7 @@ namespace ShipServiceManagement.Persistence.Interfaces
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		Task<ShipService> GetAsync(string name);
+		Task<ShipService> GetAsync(Guid id);
 
 		/// <summary>
 		/// Adds the asynchronous.
@@ -32,6 +33,6 @@ namespace ShipServiceManagement.Persistence.Interfaces
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		Task DeleteAsync(string name);
+		Task DeleteAsync(Guid id);
 	}
 }

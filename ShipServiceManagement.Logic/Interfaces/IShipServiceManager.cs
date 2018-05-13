@@ -1,4 +1,5 @@
 ﻿using ShipServiceManagement.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Logic.Interfaces
@@ -24,6 +25,6 @@ namespace ShipServiceManagement.Logic.Interfaces
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		Task DeleteShipService(string name);
+		Task DeleteShipService(Guid id);
 	}
 }
