@@ -1,0 +1,57 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ShipServiceManagement.Logic.Extensions;
+using ShipServiceManagement.Messaging.Extensions;
+using ShipServiceManagement.Persistence.Extensions;
+using dotenv.net;
+using System.IO;
+using System;
+using Utf8Json.Resolvers;
+
+namespace ShipServiceManagement.App
+{
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+
+			string filePath = ".env";
+
+#if DEBUG
+			filePath = Path.Combine(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.LastIndexOf("bin")), filePath);
+#endif
+
+			DotEnv.Config(throwOnError: false, filePath: filePath);
+		}
+
+		public IConfiguration Configuration { get; }
+
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddLogic();
+			services.AddMessaging(Configuration);
+			services.AddPersistence(Configuration);
+			services.AddMvc();
+		}
+
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+
+			CompositeResolver.RegisterAndSetAsDefault(new[]
+			{
+			   EnumResolver.UnderlyingValue,
+			   StandardResolver.ExcludeNullCamelCase
+			});
+
+			Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
+			app.UseMvc();
+		}
+	}
+}
