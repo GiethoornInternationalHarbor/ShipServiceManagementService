@@ -11,12 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipServiceManagement.Messa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipServiceManagement.App", "ShipServiceManagement.App\ShipServiceManagement.App.csproj", "{9DDF49D8-EDBE-491C-AAF5-96C104FEEB3B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0D8D9A7-D064-48DF-80B4-A5EFCFDC0280}"
-	ProjectSection(SolutionItems) = preProject
-		.travis.yml = .travis.yml
-		Dockerfile = Dockerfile
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipServiceManagement.Logic", "ShipServiceManagement.Logic\ShipServiceManagement.Logic.csproj", "{122C53A3-9A2B-4FE9-B6B2-4934E47F95DC}"
 EndProject
 Global

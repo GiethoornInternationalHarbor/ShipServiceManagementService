@@ -10,6 +10,7 @@ namespace ShipServiceManagement.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public Guid Id { get; set; }
 
+		[Required]
 		public string Name { get; set; }
 
 		public double Price { get; set; }

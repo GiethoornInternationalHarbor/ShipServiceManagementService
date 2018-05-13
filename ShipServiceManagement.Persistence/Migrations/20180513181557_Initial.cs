@@ -13,7 +13,7 @@ namespace ShipServiceManagement.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
