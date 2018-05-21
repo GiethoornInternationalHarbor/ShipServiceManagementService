@@ -32,11 +32,14 @@ namespace ShipServiceManagement.Logic.Implementations
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, id);
 		}
 
-		public async Task<ShipService> UpdateShipService(ShipService shipService)
+		public async Task<ShipService> UpdateShipService(Guid id, ShipService shipService)
 		{
-			var updatedShipService = await _shipServiceService.UpdateAsync(shipService);
+			var shipServiceToUpdate = await _shipServiceService.GetAsync(id);
+			shipServiceToUpdate.Name = shipService.Name;
+			shipServiceToUpdate.Price = shipService.Price;
+			await _shipServiceService.UpdateAsync(shipServiceToUpdate);
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceUpdated, shipService);
-			return updatedShipService;
+			return shipServiceToUpdate;
 		}
 	}
 }

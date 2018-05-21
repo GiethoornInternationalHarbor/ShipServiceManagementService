@@ -18,7 +18,7 @@ namespace ShipServiceManagement.Logic.Interfaces
 		/// </summary>
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
-		Task<ShipService> UpdateShipService(ShipService shipService);
+		Task<ShipService> UpdateShipService(Guid id, ShipService shipService);
 
 		/// <summary>
 		/// Deletes the ship service.

@@ -48,8 +48,8 @@ namespace ShipServiceManagement.App.Controllers
 		/// </summary>
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
-		[HttpPut]
-		public async Task<IActionResult> Put([FromBody]ShipService shipService)
+		[HttpPut("{id}")]
+		public async Task<IActionResult> Put(Guid id, [FromBody]ShipService shipService)
 		{
 			IActionResult response = null;
 
@@ -59,7 +59,7 @@ namespace ShipServiceManagement.App.Controllers
 			}
 			else
 			{
-				var updatedShipService = await _shipServiceManager.UpdateShipService(shipService);
+				var updatedShipService = await _shipServiceManager.UpdateShipService(id, shipService);
 				response = Ok(updatedShipService);
 			}
 
