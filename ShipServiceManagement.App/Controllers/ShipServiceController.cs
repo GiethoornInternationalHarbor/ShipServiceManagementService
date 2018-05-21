@@ -44,8 +44,9 @@ namespace ShipServiceManagement.App.Controllers
 		}
 
 		/// <summary>
-		/// Puts the specified ship service.
+		/// Puts the specified identifier.
 		/// </summary>
+		/// <param name="id">The identifier.</param>
 		/// <param name="shipService">The ship service.</param>
 		/// <returns></returns>
 		[HttpPut("{id}")]
