@@ -28,6 +28,9 @@ namespace ShipServiceManagement.Persistence.Extensions
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
 				dbContext.Database.Migrate();
 				Console.WriteLine("Completed connecting to database");
+				Console.WriteLine("Start seeding database");
+				SeedHelper.Seed(dbContext);
+				Console.WriteLine("Seeding database completed");
 			}
 		}
 	}
