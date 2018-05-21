@@ -1,6 +1,5 @@
 ﻿using ShipServiceManagement.Models;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Interfaces
@@ -8,10 +7,10 @@ namespace ShipServiceManagement.Persistence.Interfaces
 	public interface IShipServiceService
 	{
 		/// <summary>
-		/// Gets all asynchronous.
+		/// Gets the count asynchronous.
 		/// </summary>
 		/// <returns></returns>
-		Task<List<ShipService>> GetAllAsync();
+		Task<int> GetCountAsync();
 
 		/// <summary>
 		/// Gets the asynchronous.

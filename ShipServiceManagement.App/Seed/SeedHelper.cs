@@ -51,6 +51,8 @@ namespace ShipServiceManagement.App.Seed
 			{
 				await shipServiceManager.CreateShipService(shipService);
 			}
+
+			Console.WriteLine("Seed completed");
 		}
 	}
 }

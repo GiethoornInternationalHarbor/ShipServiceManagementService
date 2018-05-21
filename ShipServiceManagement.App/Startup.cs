@@ -57,8 +57,8 @@ namespace ShipServiceManagement.App
 			// Seed initial shipservices 
 			var shipServiceManager = app.ApplicationServices.GetService<IShipServiceManager>();
 
-			var shipServices = await shipServiceManager.GetShipServices();
-			if (shipServices.Count == 0)
+
+			if (await shipServiceManager.GetShipServicesCount() == 0)
 			{
 				SeedHelper.Seed(shipServiceManager);
 			}

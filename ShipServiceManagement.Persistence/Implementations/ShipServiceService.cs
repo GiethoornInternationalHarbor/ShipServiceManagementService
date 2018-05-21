@@ -4,7 +4,6 @@ using ShipServiceManagement.Persistence.Database;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 
 namespace ShipServiceManagement.Persistence.Implementations
 {
@@ -32,14 +31,14 @@ namespace ShipServiceManagement.Persistence.Implementations
 			await _shipServiceContext.SaveChangesAsync();
 		}
 
-		public async Task<List<ShipService>> GetAllAsync()
+		public async Task<int> GetCountAsync()
 		{
-			return await _shipServiceContext.ShipService.ToListAsync();
+			return await _shipServiceContext.ShipService.CountAsync();
 		}
 
-		public Task<ShipService> GetAsync(Guid id)
+		public async Task<ShipService> GetAsync(Guid id)
 		{
-			return _shipServiceContext.ShipService.LastOrDefaultAsync(x => x.Id == id);
+			return await _shipServiceContext.ShipService.LastOrDefaultAsync(x => x.Id == id);
 		}
 
 		public async Task<ShipService> UpdateAsync(ShipService shipService)

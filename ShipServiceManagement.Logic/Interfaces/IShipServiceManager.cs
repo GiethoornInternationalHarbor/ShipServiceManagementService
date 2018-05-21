@@ -8,10 +8,10 @@ namespace ShipServiceManagement.Logic.Interfaces
 	public interface IShipServiceManager
 	{
 		/// <summary>
-		/// Gets the ship services.
+		/// Gets any ship service.
 		/// </summary>
 		/// <returns></returns>
-		Task<List<ShipService>> GetShipServices();
+		Task<int> GetShipServicesCount();
 
 		/// <summary>
 		/// Creates the ship service.
