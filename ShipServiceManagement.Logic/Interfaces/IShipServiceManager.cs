@@ -1,11 +1,18 @@
 ﻿using ShipServiceManagement.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Logic.Interfaces
 {
 	public interface IShipServiceManager
 	{
+		/// <summary>
+		/// Gets any ship service.
+		/// </summary>
+		/// <returns></returns>
+		Task<int> GetShipServicesCount();
+
 		/// <summary>
 		/// Creates the ship service.
 		/// </summary>

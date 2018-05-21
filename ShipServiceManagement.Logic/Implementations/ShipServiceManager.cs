@@ -32,6 +32,11 @@ namespace ShipServiceManagement.Logic.Implementations
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, id);
 		}
 
+		public async Task<int> GetShipServicesCount()
+		{
+			return await _shipServiceService.GetCountAsync();
+		}
+
 		public async Task<ShipService> UpdateShipService(Guid id, ShipService shipService)
 		{
 			var shipServiceToUpdate = await _shipServiceService.GetAsync(id);

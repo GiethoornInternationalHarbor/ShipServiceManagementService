@@ -5,6 +5,7 @@ using ShipServiceManagement.Persistence.Database;
 using ShipServiceManagement.Persistence.Implementations;
 using ShipServiceManagement.Persistence.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Extensions
 {
@@ -19,14 +20,14 @@ namespace ShipServiceManagement.Persistence.Extensions
 			return services;
 		}
 
-		public static void OnServicesSetup(IServiceProvider serviceProvider)
+		public async static Task OnServicesSetup(IServiceProvider serviceProvider)
 		{
 
 			using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
 			{
 				Console.WriteLine("Connecting to database and migrating if required");
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
-				dbContext.Database.Migrate();
+				await dbContext.Database.MigrateAsync();
 				Console.WriteLine("Completed connecting to database");
 			}
 		}

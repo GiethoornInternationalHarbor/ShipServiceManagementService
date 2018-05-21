@@ -7,6 +7,12 @@ namespace ShipServiceManagement.Persistence.Interfaces
 	public interface IShipServiceService
 	{
 		/// <summary>
+		/// Gets the count asynchronous.
+		/// </summary>
+		/// <returns></returns>
+		Task<int> GetCountAsync();
+
+		/// <summary>
 		/// Gets the asynchronous.
 		/// </summary>
 		/// <param name="name">The name.</param>

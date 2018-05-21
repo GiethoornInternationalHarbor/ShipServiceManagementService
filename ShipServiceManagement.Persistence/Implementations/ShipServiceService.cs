@@ -31,9 +31,14 @@ namespace ShipServiceManagement.Persistence.Implementations
 			await _shipServiceContext.SaveChangesAsync();
 		}
 
-		public Task<ShipService> GetAsync(Guid id)
+		public async Task<int> GetCountAsync()
 		{
-			return _shipServiceContext.ShipService.LastOrDefaultAsync(x => x.Id == id);
+			return await _shipServiceContext.ShipService.CountAsync();
+		}
+
+		public async Task<ShipService> GetAsync(Guid id)
+		{
+			return await _shipServiceContext.ShipService.LastOrDefaultAsync(x => x.Id == id);
 		}
 
 		public async Task<ShipService> UpdateAsync(ShipService shipService)
