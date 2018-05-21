@@ -20,7 +20,7 @@ namespace ShipServiceManagement.Persistence.Extensions
 			return services;
 		}
 
-		public static void OnServicesSetup(IServiceProvider serviceProvider)
+		public async static void OnServicesSetup(IServiceProvider serviceProvider)
 		{
 
 			using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -28,9 +28,10 @@ namespace ShipServiceManagement.Persistence.Extensions
 				Console.WriteLine("Connecting to database and migrating if required");
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
 				var messagePublisher = serviceScope.ServiceProvider.GetService<IMessagePublisher>();
-				dbContext.Database.Migrate();
+				await dbContext.Database.MigrateAsync();
 				Console.WriteLine("Completed connecting to database");
 				Console.WriteLine("Start seeding database");
+				dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
 				SeedHelper.Seed(dbContext, messagePublisher);
 				Console.WriteLine("Seeding database completed");
 			}

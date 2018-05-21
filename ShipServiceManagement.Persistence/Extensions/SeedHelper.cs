@@ -59,8 +59,7 @@ namespace ShipServiceManagement.Persistence.Extensions
 			shipServices.Add(unloadingService);
 
 			dbContext.ShipService.AddRange(shipServices);
-
-			await dbContext.SaveChangesAsync();
+			dbContext.SaveChanges();
 
 			foreach (var shipService in shipServices)
 			{
