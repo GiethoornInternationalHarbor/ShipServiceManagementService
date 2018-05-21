@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ShipServiceManagement.Messaging.Interfaces;
 using ShipServiceManagement.Persistence.Database;
 using ShipServiceManagement.Persistence.Implementations;
 using ShipServiceManagement.Persistence.Interfaces;
@@ -26,10 +27,11 @@ namespace ShipServiceManagement.Persistence.Extensions
 			{
 				Console.WriteLine("Connecting to database and migrating if required");
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
+				var messagePublisher = serviceScope.ServiceProvider.GetService<IMessagePublisher>();
 				dbContext.Database.Migrate();
 				Console.WriteLine("Completed connecting to database");
 				Console.WriteLine("Start seeding database");
-				SeedHelper.Seed(dbContext);
+				SeedHelper.Seed(dbContext, messagePublisher);
 				Console.WriteLine("Seeding database completed");
 			}
 		}
