@@ -1,24 +1,13 @@
-﻿using ShipServiceManagement.Messaging.Interfaces;
-using ShipServiceManagement.Models;
-using ShipServiceManagement.Persistence.Database;
+﻿using ShipServiceManagement.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using ShipServiceManagement.Messaging.Extensions;
+using ShipServiceManagement.Logic.Interfaces;
 
-namespace ShipServiceManagement.Persistence.Extensions
+namespace ShipServiceManagement.App.Seed
 {
 	public static class SeedHelper
 	{
-		public static void Seed(ShipServiceDbContext dbContext, IMessagePublisher messagePublisher)
-		{
-			if (!dbContext.ShipService.Any())
-			{
-				SeedShipService(dbContext, messagePublisher);
-			}
-		}
-
-		private static async void SeedShipService(ShipServiceDbContext dbContext, IMessagePublisher messagePublisher)
+		public async static void Seed(IShipServiceManager shipServiceManager)
 		{
 			var shipServices = new List<ShipService>();
 
@@ -58,12 +47,9 @@ namespace ShipServiceManagement.Persistence.Extensions
 
 			shipServices.Add(unloadingService);
 
-			dbContext.ShipService.AddRange(shipServices);
-			dbContext.SaveChanges();
-
 			foreach (var shipService in shipServices)
 			{
-				await messagePublisher.PublishMessageAsync(MessageTypes.ServiceCreated, shipService);
+				await shipServiceManager.CreateShipService(shipService);
 			}
 		}
 	}

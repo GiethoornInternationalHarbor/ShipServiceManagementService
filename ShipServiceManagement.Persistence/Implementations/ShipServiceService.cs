@@ -4,6 +4,7 @@ using ShipServiceManagement.Persistence.Database;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace ShipServiceManagement.Persistence.Implementations
 {
@@ -29,6 +30,11 @@ namespace ShipServiceManagement.Persistence.Implementations
 			var shipServiceToDelete = new ShipService() { Id = id };
 			_shipServiceContext.Entry(shipServiceToDelete).State = EntityState.Deleted;
 			await _shipServiceContext.SaveChangesAsync();
+		}
+
+		public async Task<List<ShipService>> GetAllAsync()
+		{
+			return await _shipServiceContext.ShipService.ToListAsync();
 		}
 
 		public Task<ShipService> GetAsync(Guid id)

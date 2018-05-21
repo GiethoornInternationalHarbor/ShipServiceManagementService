@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShipServiceManagement.Messaging.Interfaces;
 using ShipServiceManagement.Persistence.Database;
 using ShipServiceManagement.Persistence.Implementations;
 using ShipServiceManagement.Persistence.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Extensions
 {
@@ -20,20 +20,15 @@ namespace ShipServiceManagement.Persistence.Extensions
 			return services;
 		}
 
-		public async static void OnServicesSetup(IServiceProvider serviceProvider)
+		public async static Task OnServicesSetup(IServiceProvider serviceProvider)
 		{
 
 			using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
 			{
 				Console.WriteLine("Connecting to database and migrating if required");
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
-				var messagePublisher = serviceScope.ServiceProvider.GetService<IMessagePublisher>();
 				await dbContext.Database.MigrateAsync();
 				Console.WriteLine("Completed connecting to database");
-				Console.WriteLine("Start seeding database");
-				dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
-				SeedHelper.Seed(dbContext, messagePublisher);
-				Console.WriteLine("Seeding database completed");
 			}
 		}
 	}

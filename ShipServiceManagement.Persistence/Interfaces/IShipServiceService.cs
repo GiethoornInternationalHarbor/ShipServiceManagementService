@@ -1,11 +1,18 @@
 ﻿using ShipServiceManagement.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Interfaces
 {
 	public interface IShipServiceService
 	{
+		/// <summary>
+		/// Gets all asynchronous.
+		/// </summary>
+		/// <returns></returns>
+		Task<List<ShipService>> GetAllAsync();
+
 		/// <summary>
 		/// Gets the asynchronous.
 		/// </summary>

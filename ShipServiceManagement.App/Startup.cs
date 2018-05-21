@@ -9,6 +9,8 @@ using dotenv.net;
 using System.IO;
 using System;
 using Utf8Json.Resolvers;
+using ShipServiceManagement.Logic.Interfaces;
+using ShipServiceManagement.App.Seed;
 
 namespace ShipServiceManagement.App
 {
@@ -37,7 +39,7 @@ namespace ShipServiceManagement.App
 			services.AddMvc();
 		}
 
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -50,7 +52,17 @@ namespace ShipServiceManagement.App
 			   StandardResolver.ExcludeNullCamelCase
 			});
 
-			Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
+			await Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
+
+			// Seed initial shipservices 
+			var shipServiceManager = app.ApplicationServices.GetService<IShipServiceManager>();
+
+			var shipServices = await shipServiceManager.GetShipServices();
+			if (shipServices.Count == 0)
+			{
+				SeedHelper.Seed(shipServiceManager);
+			}
+
 			app.UseMvc();
 		}
 	}
