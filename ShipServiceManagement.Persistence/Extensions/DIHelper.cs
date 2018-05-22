@@ -20,14 +20,13 @@ namespace ShipServiceManagement.Persistence.Extensions
 			return services;
 		}
 
-		public async static Task OnServicesSetup(IServiceProvider serviceProvider)
+		public static void OnServicesSetup(IServiceProvider serviceProvider)
 		{
-
 			using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
 			{
 				Console.WriteLine("Connecting to database and migrating if required");
 				var dbContext = serviceScope.ServiceProvider.GetService<ShipServiceDbContext>();
-				await dbContext.Database.MigrateAsync();
+				dbContext.Database.Migrate();
 				Console.WriteLine("Completed connecting to database");
 			}
 		}

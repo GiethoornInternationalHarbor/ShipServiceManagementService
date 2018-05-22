@@ -39,7 +39,7 @@ namespace ShipServiceManagement.App
 			services.AddMvc();
 		}
 
-		public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -52,15 +52,14 @@ namespace ShipServiceManagement.App
 			   StandardResolver.ExcludeNullCamelCase
 			});
 
-			await Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
+			Persistence.Extensions.DIHelper.OnServicesSetup(app.ApplicationServices);
 
-			// Seed initial shipservices 
+			//Seed initial shipservices
 			var shipServiceManager = app.ApplicationServices.GetService<IShipServiceManager>();
 
-
-			if (await shipServiceManager.GetShipServicesCount() == 0)
+			if (shipServiceManager.GetShipServicesCount().GetAwaiter().GetResult() == 0)
 			{
-				SeedHelper.Seed(shipServiceManager);
+				SeedHelper.Seed(shipServiceManager).GetAwaiter().GetResult();
 			}
 
 			app.UseMvc();
