@@ -77,7 +77,7 @@ namespace ShipServiceManagement.App.Controllers
 		{
 			IActionResult response = null;
 
-			if (id == null || id != Guid.Empty)
+			if (id == null || id == Guid.Empty)
 			{
 				response = NotFound();
 			}
