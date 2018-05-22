@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ShipServiceManagement.App.Controllers
 {
 	[Route("api/shipservice")]
-	public class ShipServiceController : Controller
+	public class ShipServiceController : ControllerBase
 	{
 		private readonly IShipServiceManager _shipServiceManager;
 

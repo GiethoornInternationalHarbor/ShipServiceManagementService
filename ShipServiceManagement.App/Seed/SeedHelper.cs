@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using ShipServiceManagement.Logic.Interfaces;
+using System.Threading.Tasks;
 
 namespace ShipServiceManagement.App.Seed
 {
 	public static class SeedHelper
 	{
-		public async static void Seed(IShipServiceManager shipServiceManager)
+		public async static Task Seed(IShipServiceManager shipServiceManager)
 		{
 			var shipServices = new List<ShipService>();
 
