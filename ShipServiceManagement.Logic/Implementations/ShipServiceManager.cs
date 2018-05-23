@@ -5,6 +5,7 @@ using ShipServiceManagement.Models;
 using ShipServiceManagement.Persistence.Interfaces;
 using ShipServiceManagement.Messaging.Extensions;
 using System;
+using System.Collections.Generic;
 
 namespace ShipServiceManagement.Logic.Implementations
 {
@@ -30,6 +31,11 @@ namespace ShipServiceManagement.Logic.Implementations
 		{
 			await _shipServiceService.DeleteAsync(id);
 			await _messagePublisher.PublishMessageAsync(MessageTypes.ServiceDeleted, id);
+		}
+
+		public Task<IEnumerable<ShipService>> GetShipServices()
+		{
+			return _shipServiceService.GetAll();
 		}
 
 		public async Task<int> GetShipServicesCount()
