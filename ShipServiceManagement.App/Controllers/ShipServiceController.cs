@@ -2,6 +2,7 @@
 using ShipServiceManagement.Logic.Interfaces;
 using ShipServiceManagement.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.App.Controllers
@@ -18,6 +19,13 @@ namespace ShipServiceManagement.App.Controllers
 		public ShipServiceController(IShipServiceManager shipServiceManager)
 		{
 			_shipServiceManager = shipServiceManager;
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Get()
+		{
+			IEnumerable<ShipService> services = await _shipServiceManager.GetShipServices();
+			return Ok(services);
 		}
 
 		/// <summary>

@@ -4,6 +4,7 @@ using ShipServiceManagement.Persistence.Database;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace ShipServiceManagement.Persistence.Implementations
 {
@@ -47,6 +48,11 @@ namespace ShipServiceManagement.Persistence.Implementations
 			await _shipServiceContext.SaveChangesAsync();
 
 			return updatedShipService.Entity;
+		}
+
+		public Task<IEnumerable<ShipService>> GetAll()
+		{
+			return Task.FromResult<IEnumerable<ShipService>>(_shipServiceContext.ShipService);
 		}
 	}
 }

@@ -8,6 +8,12 @@ namespace ShipServiceManagement.Logic.Interfaces
 	public interface IShipServiceManager
 	{
 		/// <summary>
+		/// Gets the ship services.
+		/// </summary>
+		/// <returns></returns>
+		Task<IEnumerable<ShipService>> GetShipServices();
+
+		/// <summary>
 		/// Gets any ship service.
 		/// </summary>
 		/// <returns></returns>

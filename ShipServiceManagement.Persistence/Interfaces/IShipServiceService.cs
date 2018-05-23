@@ -1,5 +1,6 @@
 ﻿using ShipServiceManagement.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ShipServiceManagement.Persistence.Interfaces
@@ -40,5 +41,11 @@ namespace ShipServiceManagement.Persistence.Interfaces
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
 		Task DeleteAsync(Guid id);
+
+		/// <summary>
+		/// Gets all shipservices.
+		/// </summary>
+		/// <returns></returns>
+		Task<IEnumerable<ShipService>> GetAll();
 	}
 }
