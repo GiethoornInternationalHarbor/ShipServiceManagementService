@@ -14,7 +14,7 @@ namespace ShipServiceManagement.App.Seed
 
 			var refuelingService = new ShipService()
 			{
-				Id = Guid.Parse("330f5d70-39f1-459d-b990-6f68a083ca97"),
+				Id = Guid.Parse("ff9f7c8c-92b6-4863-8451-de7c94389d53"),
 				Name = "RefuelingService",
 				Price = 10.25
 			};
@@ -23,7 +23,7 @@ namespace ShipServiceManagement.App.Seed
 
 			var electricityService = new ShipService()
 			{
-				Id = Guid.Parse("f8a3b992-6f5c-4a32-9ac3-b62497c28d25"),
+				Id = Guid.Parse("adfe1a0c-28fa-4e0e-a0c1-524bf1bb3624"),
 				Name = "ElectricityService",
 				Price = 25.25
 			};
